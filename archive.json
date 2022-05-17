@@ -1,0 +1,916 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2022-05-17T00:37:18.946302+00:00",
+  "repo": "ietf-scitt/draft-birkholz-scitt-architecture",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [],
+  "pulls": [
+    {
+      "number": 1,
+      "id": "PR_kwDOG2uWFs4zSxHt",
+      "title": "Intro draft 00",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/1",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "Preliminary introduction content as a basis for discussion on scope and initial content",
+      "createdAt": "2022-02-22T15:34:57Z",
+      "updatedAt": "2022-02-23T09:21:58Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2ea8651a8bcf476ba950858d0b94765a49d71ca2",
+      "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "headRefName": "intro-draft-00",
+      "headRefOid": "470b2046dc19fadf0bafe01e1b31562ea6261886",
+      "closedAt": "2022-02-23T09:21:58Z",
+      "mergedAt": "2022-02-23T09:21:58Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "96c5c038803deda0f71aad59e791c129998c76c1"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDOG2uWFs4zS1k_",
+      "title": "Add initial structure",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/2",
+      "state": "MERGED",
+      "author": "ad-l",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-02-22T15:53:38Z",
+      "updatedAt": "2022-02-23T08:11:25Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2ea8651a8bcf476ba950858d0b94765a49d71ca2",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "8c16abf3aba4794eb31feeeb74f0282e927a0314",
+      "closedAt": "2022-02-23T08:11:25Z",
+      "mergedAt": "2022-02-23T08:11:25Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "689d3fd8ef155cf91ce694844e060871f3b3763c"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41F2lf",
+          "commit": {
+            "abbreviatedOid": "8c16abf"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "I'll merge this one first and then go with #1, massaging the content from here into #1",
+          "createdAt": "2022-02-23T08:10:27Z",
+          "updatedAt": "2022-02-23T08:10:27Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOG2uWFs4zWa8w",
+      "title": "Starting to scope use cases",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/3",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "added two rough use cases illustrating supply chain logistic challenges",
+      "createdAt": "2022-02-23T15:06:23Z",
+      "updatedAt": "2022-02-28T15:38:56Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "2cc42b24813be29418571ebccd5e84aa7bea1b9e",
+      "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "headRefName": "more-use-cases",
+      "headRefOid": "121f36d2e95a917727f9993fe70c87924f4da323",
+      "closedAt": "2022-02-28T15:38:56Z",
+      "mergedAt": "2022-02-28T15:38:56Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "d9a45e42d5b7b7ce1543c341c4f1574a8d3a785b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 4,
+      "id": "PR_kwDOG2uWFs4zdKyi",
+      "title": "Terms",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/4",
+      "state": "MERGED",
+      "author": "henkbirkholz",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "added an early list of term candidates (and a terminology section)",
+      "createdAt": "2022-02-25T10:04:43Z",
+      "updatedAt": "2022-02-25T11:07:32Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "a00f1af64f3929a3e29d1837d59b66efc03b6667",
+      "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "headRefName": "terms",
+      "headRefOid": "0eadb68de11b540546fc9cca07d4aad799eb8d61",
+      "closedAt": "2022-02-25T11:07:32Z",
+      "mergedAt": "2022-02-25T11:07:32Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "6ff841cad5bd0205f16b01f67551b2417d235c76"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDOG2uWFs4zd005",
+      "title": "Re-arrange terminology and use cases; complete terminology",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/5",
+      "state": "MERGED",
+      "author": "ad-l",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-02-25T13:42:42Z",
+      "updatedAt": "2022-02-28T15:17:06Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "6ff841cad5bd0205f16b01f67551b2417d235c76",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "7abe7debcf1367b6e3aeb03932c1c325828851d1",
+      "closedAt": "2022-02-28T15:17:06Z",
+      "mergedAt": "2022-02-28T15:17:06Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "2cc42b24813be29418571ebccd5e84aa7bea1b9e"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41UW8K",
+          "commit": {
+            "abbreviatedOid": "7abe7de"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-02-27T17:44:29Z",
+          "updatedAt": "2022-02-27T17:44:29Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41W-wV",
+          "commit": {
+            "abbreviatedOid": "7abe7de"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-02-28T15:16:56Z",
+          "updatedAt": "2022-02-28T15:16:56Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDOG2uWFs4zvXX6",
+      "title": "Minor restructuring; we plan to combine format and protocols",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/6",
+      "state": "MERGED",
+      "author": "ad-l",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-01T16:37:57Z",
+      "updatedAt": "2022-03-02T16:28:37Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "db1120e3ccaa8d21d15eee4d59798531acc1190b",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "76b02d69e2fb1ecfe205fa2e6c4e34fa7ac2e938",
+      "closedAt": "2022-03-02T16:28:37Z",
+      "mergedAt": "2022-03-02T16:28:37Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "89d4fc26e436fbf5170b7196db718cce23a82266"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41e9X5",
+          "commit": {
+            "abbreviatedOid": "dc46aff"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-02T09:26:45Z",
+          "updatedAt": "2022-03-02T09:26:46Z",
+          "comments": [
+            {
+              "originalPosition": 19,
+              "body": "```suggestion\r\nthe service presents attestation evidence that typically includes measurement of the\r\nsoftware it runs in this TEE. and a corresponding endorsement co-located with the\r\nTEE and provisioned by the Endorser. The client verifies the evidence with the help\r\nof a Verifier before using the service as the Relying Party.\r\n```",
+              "createdAt": "2022-03-02T09:26:45Z",
+              "updatedAt": "2022-03-02T09:27:36Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41e-vg",
+          "commit": {
+            "abbreviatedOid": "dc46aff"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-02T09:31:04Z",
+          "updatedAt": "2022-03-02T09:31:05Z",
+          "comments": [
+            {
+              "originalPosition": 21,
+              "body": "RATS defines the solution basically as \"via a Verifier role\". Evidence always comes with a proof of its Authenticity as it is signed by an Attesting Environment of the Attester (usually a RoT, that can be a layered Attesting Environment, sometimes called a Bootstrapped RoT).",
+              "createdAt": "2022-03-02T09:31:05Z",
+              "updatedAt": "2022-03-02T09:31:05Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41fBnn",
+          "commit": {
+            "abbreviatedOid": "dc46aff"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-02T09:40:40Z",
+          "updatedAt": "2022-03-02T09:40:40Z",
+          "comments": [
+            {
+              "originalPosition": 28,
+              "body": "The conceptual messages provided here (in this scope artifacts or assets) are:\r\n* \"recording of their measurements\", which I assume means nominal measurements, that you can compare actual live measurements coming from the confidential services about itself - that would be Reference Values in Reference Integrity Manifests.\r\n* \"recording of their provenance\", which is bit ambiguously phrase but probably is an SBOM and Endorsements.\r\n\r\nProvided here is the Verifier role that can be taken on by the client, of course. The entity that is a client takes on a lot of a responsibility here, if it also takes on the role of a Relying Party. The Verifier role conducts the \"appraisal of Evidence\", consuming Reference Values, and Endorsements (coming from supply chain entities that are usually manufacturers, oem, and certifying organizations). and Evidence coming from the Confidential Computing Service that takes on the role of an Attester.",
+              "createdAt": "2022-03-02T09:40:40Z",
+              "updatedAt": "2022-03-02T09:40:51Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41fCiP",
+          "commit": {
+            "abbreviatedOid": "dc46aff"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-02T09:43:45Z",
+          "updatedAt": "2022-03-02T09:43:46Z",
+          "comments": [
+            {
+              "originalPosition": 13,
+              "body": "In a nutshell:\r\n\r\nCC Service: Attester\r\nClient: Verifier & Relying Party\r\nTransparency Service: Endorser & Reference Value Provider (or a trusted relay for them as the artifact issuer actually take on these roles, I think)",
+              "createdAt": "2022-03-02T09:43:46Z",
+              "updatedAt": "2022-03-02T10:08:07Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "id": "PR_kwDOG2uWFs4z0byl",
+      "title": "Corrected Abstract to align with the larger scope of the document",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/7",
+      "state": "MERGED",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Request please review this!",
+      "createdAt": "2022-03-02T10:41:21Z",
+      "updatedAt": "2022-03-02T16:25:40Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "16fae14e9eadbd46fdf17b0c6f648f0783e6b2fc",
+      "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "headRefName": "correction-branch",
+      "headRefOid": "c3e4416d34a1252c310ddf54056889f5c29676ab",
+      "closedAt": "2022-03-02T16:25:40Z",
+      "mergedAt": "2022-03-02T16:25:40Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "db1120e3ccaa8d21d15eee4d59798531acc1190b"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 8,
+      "id": "PR_kwDOG2uWFs4z16O5",
+      "title": "The confidential computing use case now discusses specific machine-learning tasks.",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/8",
+      "state": "MERGED",
+      "author": "fournet",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-02T16:56:48Z",
+      "updatedAt": "2022-03-04T13:36:11Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "89d4fc26e436fbf5170b7196db718cce23a82266",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "29729155426c5448df59834889b060803c2ee977",
+      "closedAt": "2022-03-04T13:36:11Z",
+      "mergedAt": "2022-03-04T13:36:11Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "c9e4084103906f1052e7f1f9e0b0707129cb07a4"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41pnnh",
+          "commit": {
+            "abbreviatedOid": "463b08b"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-03-04T11:15:00Z",
+          "updatedAt": "2022-03-04T11:32:29Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "```suggestion\r\nThe first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement on an, immutable, append-only, transparent ledger. The last guarantee is achieved by implementing the ledger using a verifiable data structure (such as a Merkle Tree), and by the requiring a transparency service (TS) that operates the ledger to endorse its state at the time of registration.\r\n```",
+              "createdAt": "2022-03-04T11:15:00Z",
+              "updatedAt": "2022-03-04T11:32:29Z"
+            },
+            {
+              "originalPosition": 40,
+              "body": "```suggestion\r\nThe guarantees and techniques used in this document generalize those of Certificate Transparency ({{-CT}}), which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its ledger. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full ledger, or keep some information on the ledger encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.\r\n```",
+              "createdAt": "2022-03-04T11:20:04Z",
+              "updatedAt": "2022-03-04T11:32:29Z"
+            },
+            {
+              "originalPosition": 93,
+              "body": "```suggestion\r\nAs the ever increasing complexity of large software projects requires more modularity and abstractions to manage, keeping track of their full Trusted Computing Base (TCB) is becoming increasingly difficult. Each component may have its own set of dependencies and libraries. Some of these dependencies are binaries, which means their TCB depends not only on their source, but also on the build environment (compilers and tool-chains). Many source and binary packages are distributed through various channels and repositories that may not be trustworthy.\r\n```",
+              "createdAt": "2022-03-04T11:23:27Z",
+              "updatedAt": "2022-03-04T11:32:29Z"
+            },
+            {
+              "originalPosition": 238,
+              "body": "```suggestion\r\nThe combination of ledger, identity, registration policy evaluation, and registration endpoint constitute the trusted part of the TS. Each of these components SHOULD be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the TS. For instance, the code for policy evaluation, ledger extension and endorsement may be protected by running in a TEE; the ledger may be replicated and a consensus algorithm such as PBFT be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.\r\n```",
+              "createdAt": "2022-03-04T11:30:57Z",
+              "updatedAt": "2022-03-04T11:32:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41qEXx",
+          "commit": {
+            "abbreviatedOid": "46fb241"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-04T13:25:20Z",
+          "updatedAt": "2022-03-04T13:25:21Z",
+          "comments": [
+            {
+              "originalPosition": 36,
+              "body": "```suggestion\r\nTraceability of physical and digital artifacts in supply chains is a long standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.\r\n```",
+              "createdAt": "2022-03-04T13:25:20Z",
+              "updatedAt": "2022-03-04T13:25:21Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41qEqE",
+          "commit": {
+            "abbreviatedOid": "46fb241"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-04T13:26:29Z",
+          "updatedAt": "2022-03-04T13:26:30Z",
+          "comments": [
+            {
+              "originalPosition": 39,
+              "body": "```suggestion\r\nThis memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any transparency service, with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of transparency services with various auditing and compliance requirements.\r\n```",
+              "createdAt": "2022-03-04T13:26:29Z",
+              "updatedAt": "2022-03-04T13:26:58Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41qHGa",
+          "commit": {
+            "abbreviatedOid": "2972915"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-03-04T13:36:04Z",
+          "updatedAt": "2022-03-04T13:36:04Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "id": "PR_kwDOG2uWFs4z41TQ",
+      "title": "Update draft-birkholz-scitt-architecture.md",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/9",
+      "state": "MERGED",
+      "author": "knight-brian",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "These changes address some spelling and grammatical errors.",
+      "createdAt": "2022-03-03T12:24:52Z",
+      "updatedAt": "2022-03-04T13:41:27Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c9e4084103906f1052e7f1f9e0b0707129cb07a4",
+      "headRepository": "knight-brian/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "b8d414f264f740b330fdd3e57781442f012b4714",
+      "closedAt": "2022-03-04T13:41:26Z",
+      "mergedAt": "2022-03-04T13:41:26Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "9afc2bd492a195dc13d4b877bab026edf2492fd5"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41prqY",
+          "commit": {
+            "abbreviatedOid": "4b1906e"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-03-04T11:33:41Z",
+          "updatedAt": "2022-03-04T11:33:41Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "id": "PR_kwDOG2uWFs40AWYs",
+      "title": "typo and formatting round",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/10",
+      "state": "MERGED",
+      "author": "cabo",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-06T17:55:55Z",
+      "updatedAt": "2022-03-07T11:41:47Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "9afc2bd492a195dc13d4b877bab026edf2492fd5",
+      "headRepository": "cabo/draft-birkholz-scitt-architecture",
+      "headRefName": "typo",
+      "headRefOid": "ce955c0f7343502a88f6e28e2f9016050791c830",
+      "closedAt": "2022-03-07T10:06:14Z",
+      "mergedAt": "2022-03-07T10:06:14Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "4fa5b30cb55749f278d7d2ebba7c71982086d46b"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41ukRc",
+          "commit": {
+            "abbreviatedOid": "f887a3f"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T09:00:34Z",
+          "updatedAt": "2022-03-07T09:00:35Z",
+          "comments": [
+            {
+              "originalPosition": 87,
+              "body": "```suggestion\r\nOnce seafood is caught, its quality is determined -- amongst other criteria -- via the integrity of a cold chain that ensures a regulatory perspective freshness mandating a continuous storing temperature between 1\u00a0{{{\u00b0}}}C and 0\u00a0{{{\u00b0}}}C (or -18\u00a0{{{\u00b0}}}C and lower for frozen seafood). The temperature is recorded by cooling units adhering to certain compliance standards automatically. Batches of seafood can be split or aggregated before arriving in a shelf so that each unit can potentially have a potentially unique cold chain record whose transparency impacts the accuracy of the shelf-life associated with it. Especially in early links of the supply chain, Internet connection or sophisticated IT equipment are typically not available and sometimes temperature measurements are recorded manually and digital records are created in hindsight.\r\n```",
+              "createdAt": "2022-03-07T09:00:34Z",
+              "updatedAt": "2022-03-07T09:00:35Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41ukt3",
+          "commit": {
+            "abbreviatedOid": "9fd1c81"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T09:02:14Z",
+          "updatedAt": "2022-03-07T09:02:14Z",
+          "comments": [
+            {
+              "originalPosition": 185,
+              "body": "```suggestion\r\n```",
+              "createdAt": "2022-03-07T09:02:14Z",
+              "updatedAt": "2022-03-07T09:02:59Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41ukyC",
+          "commit": {
+            "abbreviatedOid": "9fd1c81"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T09:02:28Z",
+          "updatedAt": "2022-03-07T09:02:29Z",
+          "comments": [
+            {
+              "originalPosition": 185,
+              "body": "Will do! :+1: ",
+              "createdAt": "2022-03-07T09:02:28Z",
+              "updatedAt": "2022-03-07T09:02:29Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41ulL9",
+          "commit": {
+            "abbreviatedOid": "9fd1c81"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-03-07T09:04:01Z",
+          "updatedAt": "2022-03-07T09:04:01Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41u20s",
+          "commit": {
+            "abbreviatedOid": "ce955c0"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-03-07T10:06:05Z",
+          "updatedAt": "2022-03-07T10:06:05Z",
+          "comments": []
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vPqh",
+          "commit": {
+            "abbreviatedOid": "9fd1c81"
+          },
+          "author": "cabo",
+          "authorAssociation": "CONTRIBUTOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T11:41:47Z",
+          "updatedAt": "2022-03-07T11:41:47Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "So what is a regulatory perspective freshness?",
+              "createdAt": "2022-03-07T11:41:47Z",
+              "updatedAt": "2022-03-07T11:41:47Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "id": "PR_kwDOG2uWFs40B2aM",
+      "title": "Change of title; details in the first section, notably on service identity, attestation, and registration policies.",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/11",
+      "state": "MERGED",
+      "author": "fournet",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-07T09:39:45Z",
+      "updatedAt": "2022-03-07T11:02:36Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "4fa5b30cb55749f278d7d2ebba7c71982086d46b",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "89b413acc05f6504bf1fd77d95d8ae162df17acc",
+      "closedAt": "2022-03-07T11:02:36Z",
+      "mergedAt": "2022-03-07T11:02:36Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "c57d4ef244cd2e72a11d8391929403cff91d90dd"
+      },
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41vDRU",
+          "commit": {
+            "abbreviatedOid": "4da99c1"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T10:51:41Z",
+          "updatedAt": "2022-03-07T10:51:42Z",
+          "comments": [
+            {
+              "originalPosition": 12,
+              "body": "```suggestion\r\nTrust in the TS itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its ledger, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global ledger, we require each TS to guarantee the consistency of its own ledger (for instance, through the use of a consensus algorithm between replicas of the ledger), but assume no consistency between different transparency services.\r\n```",
+              "createdAt": "2022-03-07T10:51:41Z",
+              "updatedAt": "2022-03-07T10:51:42Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vEQw",
+          "commit": {
+            "abbreviatedOid": "4da99c1"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T10:55:22Z",
+          "updatedAt": "2022-03-07T10:55:22Z",
+          "comments": [
+            {
+              "originalPosition": 51,
+              "body": "```suggestion\r\n### Service Identity, Remote Attestation, and Keying\r\n```",
+              "createdAt": "2022-03-07T10:55:22Z",
+              "updatedAt": "2022-03-07T10:55:22Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vE1l",
+          "commit": {
+            "abbreviatedOid": "d2c5a45"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T10:57:31Z",
+          "updatedAt": "2022-03-07T10:57:32Z",
+          "comments": [
+            {
+              "originalPosition": 123,
+              "body": "```suggestion\r\n##  Envelope and Claim Format\r\n```",
+              "createdAt": "2022-03-07T10:57:31Z",
+              "updatedAt": "2022-03-07T10:57:32Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vFWh",
+          "commit": {
+            "abbreviatedOid": "d2c5a45"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T10:59:25Z",
+          "updatedAt": "2022-03-07T10:59:25Z",
+          "comments": [
+            {
+              "originalPosition": 129,
+              "body": "```suggestion\r\nAt a high-level that is the context of this architecture, a Claim is a COSE single-signed object (i.e. `COSE_Sign1`) that contains the correct set of protected headers. Although issuers and relays may attach unprotected headers to claims, transparency services and verifiers MUST NOT rely on the presence or value of unrpotected headers in claims during registration and validation.\r\n```",
+              "createdAt": "2022-03-07T10:59:25Z",
+              "updatedAt": "2022-03-07T10:59:26Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vFjP",
+          "commit": {
+            "abbreviatedOid": "005a9e7"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T11:00:10Z",
+          "updatedAt": "2022-03-07T11:00:11Z",
+          "comments": [
+            {
+              "originalPosition": 162,
+              "body": "```suggestion\r\n## Claim Issuance\r\n```",
+              "createdAt": "2022-03-07T11:00:11Z",
+              "updatedAt": "2022-03-07T11:00:11Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vFx2",
+          "commit": {
+            "abbreviatedOid": "3df24d9"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-03-07T11:01:03Z",
+          "updatedAt": "2022-03-07T11:01:03Z",
+          "comments": [
+            {
+              "originalPosition": 171,
+              "body": "```suggestion\r\nThere are many types of statements (such as SBOMs, malware scans, audit reports, policy definitions) that Issuers may want to turn into Claims. The Issuer must first decide on a suitable format to serialize the statement, such as:\r\n```",
+              "createdAt": "2022-03-07T11:01:03Z",
+              "updatedAt": "2022-03-07T11:01:04Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs41vGIH",
+          "commit": {
+            "abbreviatedOid": "89b413a"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Will do a separate check on capitalizing first letters of Term terms tonight",
+          "createdAt": "2022-03-07T11:02:24Z",
+          "updatedAt": "2022-03-07T11:02:24Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "id": "PR_kwDOG2uWFs40CXvr",
+      "title": "Polish section 6 a bit",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/12",
+      "state": "MERGED",
+      "author": "ad-l",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2022-03-07T12:02:50Z",
+      "updatedAt": "2022-03-07T20:27:32Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "c57d4ef244cd2e72a11d8391929403cff91d90dd",
+      "headRepository": "ad-l/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "ee68c659a4451fcb49988d9247bed02dcf8c22b7",
+      "closedAt": "2022-03-07T20:27:32Z",
+      "mergedAt": "2022-03-07T20:27:32Z",
+      "mergedBy": "henkbirkholz",
+      "mergeCommit": {
+        "oid": "0ba563cbef8613e7f8be464dc2887889802936ba"
+      },
+      "comments": [
+        {
+          "author": "ad-l",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@henkbirkholz added security considerations and architecture picture",
+          "createdAt": "2022-03-07T19:24:37Z",
+          "updatedAt": "2022-03-07T19:24:37Z"
+        }
+      ],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs41xrQS",
+          "commit": {
+            "abbreviatedOid": "ee68c65"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Thanks for the diagram, the sec-sec and all the other additional polish! I thought about tinkering with the diagram, but am in doubt that I'll improve it significantly.\r\n\r\nLGTM!",
+          "createdAt": "2022-03-07T20:27:25Z",
+          "updatedAt": "2022-03-07T20:27:25Z",
+          "comments": []
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "id": "PR_kwDOG2uWFs413tH1",
+      "title": "Architecture changes",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/13",
+      "state": "OPEN",
+      "author": "yogeshbdeshpande",
+      "authorAssociation": "CONTRIBUTOR",
+      "assignees": [],
+      "labels": [],
+      "body": "Use correct terminology(Transparency Log) reflecting the Transparency Architecture as against an implementation terminology of ledger.",
+      "createdAt": "2022-04-08T12:25:09Z",
+      "updatedAt": "2022-04-13T08:53:52Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
+      "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "headRefName": "architecture-edits",
+      "headRefOid": "1b8717b8e36df940cd9e64a88c0603cdbe31fa91",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [
+        {
+          "author": "yogeshbdeshpande",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "@henkbirkholz Can you please review and let me know, your thoughts on the PR?",
+          "createdAt": "2022-04-13T08:53:51Z",
+          "updatedAt": "2022-04-13T08:53:51Z"
+        }
+      ],
+      "reviews": []
+    }
+  ]
+}
