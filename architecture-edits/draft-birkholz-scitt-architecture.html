@@ -11,28 +11,28 @@
 <meta content="Yogesh Deshpande" name="author">
 <meta content="
        Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases. 
-       This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any TS, with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
+       This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements. 
     " name="description">
-<meta content="xml2rfc 3.12.3" name="generator">
+<meta content="xml2rfc 3.12.10" name="generator">
 <meta content="Internet-Draft" name="keyword">
 <meta content="draft-birkholz-scitt-architecture-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.12.3
-    Python 3.9.7
+  xml2rfc 3.12.10
+    Python 3.10.4
     appdirs 1.4.4
-    ConfigArgParse 1.3
-    google-i18n-address 2.5.0
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.1
     html5lib 1.1
     intervaltree 3.1.0
     Jinja2 2.11.3
     kitchen 1.2.6
-    lxml 4.6.5
+    lxml 4.8.0
     MarkupSafe 2.0.1
     pycountry 20.7.3
-    pyflakes 2.3.1
-    PyYAML 5.4.1
-    requests 2.26.0
-    setuptools 52.0.0
+    pyflakes 2.4.0
+    PyYAML 6.0
+    requests 2.27.1
+    setuptools 59.4.0
     six 1.16.0
 -->
 <link href="draft-birkholz-scitt-architecture.xml" rel="alternate" type="application/rfc+xml">
@@ -157,6 +157,14 @@
   font-weight: 700;
   font-display: swap;
   src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -340,7 +348,7 @@ ol, ul {
   padding: 0;
   margin: 0 0 0.5em 2em;
 }
-ol ol, ul ul, ol ul, ul ol {
+:is(ol, ul) :is(ol, ul) {
   margin-left: 1em;
 }
 li {
@@ -355,8 +363,7 @@ ul.empty, .ulEmpty {
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
 }
-ul.compact, .ulCompact,
-ol.compact, .olCompact {
+:is(ul, ol).compact, .ulCompact, .olCompact {
   line-height: 100%;
   margin: 0 0 0 2em;
 }
@@ -372,7 +379,7 @@ dl > dd {
   margin-bottom: .8em;
   min-height: 1.3em;
 }
-dl.compact > dd, .dlCompact > dd {
+:is(dl.compact, .dlCompact) > dd {
   margin-bottom: 0em;
 }
 dl > dd > dl {
@@ -414,6 +421,9 @@ tt, code {
      remove leading to avoid altering the final height of lines */
   line-height: 0;
 }
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
+}
 pre {
   border: 1px solid var(--line-color);
   font-size: 13.5px;
@@ -438,6 +448,19 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
   pre, svg {
     display: inline-block;
     overflow-x: auto;
@@ -453,7 +476,7 @@ figcaption, caption {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow, svg + .pilcrow {
+  :is(pre, svg) + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
@@ -502,17 +525,11 @@ th, td {
 th {
   background-color: var(--line-color);
 }
-tr:nth-child(2n) > td {
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
   background-color: var(--background-color);
 }
-tr:nth-child(2n+1) > td {
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
-}
-thead+tbody > tr:nth-child(2n) > td {
-  background-color: var(--highlight-color);
-}
-thead+tbody > tr:nth-child(2n+1) > td {
-  background-color: var(--background-color);
 }
 table caption {
   margin: 0;
@@ -552,8 +569,9 @@ hr {
 }
 .bcp14 {
   font-variant: small-caps;
+  font-weight: 600;
+  font-size: 14.5px;
 }
-
 .role {
   font-variant: all-small-caps;
 }
@@ -792,7 +810,7 @@ hr.addr {
     margin: 0 0 0 4px;
     font-size: var(--small-font-size);
   }
-  #toc ul p, #toc ul li {
+  #toc ul :is(p, li) {
     margin: 2px 0;
     line-height: 22px;
   }
@@ -902,13 +920,13 @@ dl.dlNewline > dt {
 }
 
 /* Provide styling for table cell text alignment */
-table .text-left, table .text-left {
+table .text-left {
   text-align: left;
 }
-table .text-center, table .text-center {
+table .text-center {
   text-align: center;
 }
-table .text-right, table .text-right {
+table .text-right {
   text-align: right;
 }
 
@@ -975,12 +993,6 @@ address div.right {
   }
 
 }
-/* Tweak the bcp14 keyword presentation */
-.bcp14 {
-  font-variant: small-caps;
-  font-weight: bold;
-  font-size: 0.9em;
-}
 
 /* Dark mode. */
 @media (prefers-color-scheme: dark) {
@@ -995,19 +1007,20 @@ address div.right {
   --pilcrow-strong: #666;
   scrollbar-color: #777 #333;
 }
-/* Trick: a prefix match works because only black and white are allowed */
-svg [stroke="black"], svg [stroke^="#000"] {
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
   stroke: var(--text-color);
 }
-svg [stroke="white"], svg [stroke^="#fff"] {
+svg :is([stroke="white"], [stroke^="#fff"]) {
   stroke: var(--background-color);
 }
-svg [fill="black"], svg [fill^="#000"], svg :not([fill]) {
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
   fill: var(--text-color);
 }
-svg [stroke="fill"], svg [fill^="#fff"] {
+svg :is([stroke="fill"], [fill^="#fff"]) {
   fill: var(--background-color);
-}
 }
 </style>
 
@@ -1017,11 +1030,11 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">SCITT Architecture</td>
-<td class="right">April 2022</td>
+<td class="right">June 2022</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Birkholz, et al.</td>
-<td class="center">Expires 10 October 2022</td>
+<td class="center">Expires 19 December 2022</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1034,12 +1047,12 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <dd class="internet-draft">draft-birkholz-scitt-architecture-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2022-04-08" class="published">8 April 2022</time>
+<time datetime="2022-06-17" class="published">17 June 2022</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2022-10-10">10 October 2022</time></dd>
+<dd class="expires"><time datetime="2022-12-19">19 December 2022</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1065,7 +1078,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">Traceability of physical and digital artifacts in supply chains is a long-standing, but increasingly serious security concern. The rise in popularity of verifiable data structures as a mechanism to make actors more accountable for breaching their compliance promises has found some successful applications to specific use cases (such as the supply chain for digital certificates), but lacks a generic and scalable architecture that can address a wider range of use cases.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
-<p id="section-abstract-2">This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any TS, with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
+<p id="section-abstract-2">This memo defines a generic and scalable architecture to enable transparency across any supply chain with minimum adoption barriers for producers (who can register their claims on any Transparency Service (TS), with the guarantee that all consumers will be able to verify them) and enough flexibility to allow different implementations of Transparency Services with various auditing and compliance requirements.<a href="#section-abstract-2" class="pilcrow">¶</a></p>
 </section>
 <section class="note rfcEditorRemove" id="section-note.1">
       <h2 id="name-about-this-document">
@@ -1098,7 +1111,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 10 October 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 19 December 2022.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1182,7 +1195,7 @@ svg [stroke="fill"], svg [fill^="#fff"] {
                     <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="xref">5.2.2</a>.  <a href="#name-registration-policies" class="xref">Registration Policies</a></p>
 </li>
                   <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="xref">5.2.3</a>.  <a href="#name-log-security-requirements" class="xref">Log Security Requirements</a></p>
+                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="xref">5.2.3</a>.  <a href="#name-registry-security-requireme" class="xref">Registry Security Requirements</a></p>
 </li>
                 </ul>
 </li>
@@ -1267,17 +1280,17 @@ It achieves this goal by enforcing the following complementary security guarante
 <ol start="1" type="1" class="normal type-1" id="section-1-2">
 <li id="section-1-2.1">statements made by issuers about supply chain artifacts must be identifiable, authentic, and non-repudiable;<a href="#section-1-2.1" class="pilcrow">¶</a>
 </li>
-        <li id="section-1-2.2">such statements must be registered on a secure append-only Log so that their provenance and history can be independently and consistently audited;<a href="#section-1-2.2" class="pilcrow">¶</a>
+        <li id="section-1-2.2">such statements must be registered on a secure append-only Registry so that their provenance and history can be independently and consistently audited;<a href="#section-1-2.2" class="pilcrow">¶</a>
 </li>
         <li id="section-1-2.3">issuers can efficiently prove to any other party the registration of their claims; verifying this proof ensures that the issuer is consistent and non-equivocal when making claims.<a href="#section-1-2.3" class="pilcrow">¶</a>
 </li>
       </ol>
-<p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement on an immutable, append-only, transparent Log. The last guarantee is achieved by implementing the Log using a verifiable data structure (such as a Merkle Tree), and by requiring a transparency service (TS) that operates the Log to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
-<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Log. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Log, or keep some information on the Log encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
+<p id="section-1-3">The first guarantee is achieved by requiring issuers to sign their statements and associated metadata using a distributed public key infrastructure. The second guarantee is achieved by storing the signed statement in an immutable, append-only, transparent Registry. The last guarantee is achieved by implementing the Registry using a verifiable data structure (such as a Merkle Tree), and by requiring a TS that operates the Registry to endorse its state at the time of registration.<a href="#section-1-3" class="pilcrow">¶</a></p>
+<p id="section-1-4">The guarantees and techniques used in this document generalize those of Certificate Transparency <span>[<a href="#RFC9162" class="xref">RFC9162</a>]</span>, which can be re-interpreted as an instance of this architecture for the supply chain of X.509 certificates. However, the range of use cases and applications in this document is much broader, which requires much more flexibility in how each TS implements and operates its Registry. Each service may enforce its own policy for authorizing entities to register their claims on the TS. Some TS may also enforce access control policies to limit who can audit the full Registry, or keep some information on the Registry encrypted. Nevertheless, it is critical to provide global interoperability for all TS instances as the composition and configuration of involved supply chain entities and their system components is ever changing and always in flux.<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">A TS provides visibility into claims issued by supply chain entities and their sub-systems. These claims are called Digital Supply Chain Artifacts (DSCA).
-A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Log". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.<a href="#section-1-5" class="pilcrow">¶</a></p>
+A TS vouches for specific and well-defined metadata about these DSCAs. Some metadata is selected (and signed) by the issuer, indicating, e.g., "who issued the DSCA" or "what type of DSCA is described" or "what is the DSCA version"; whereas additional metadata is selected (and countersigned) by the TS, indicating, e.g., "when was the DSCA registered in the Registry". The DSCA contents can be opaque to the TS, if so desired: it is the metadata that must always be transparent in order to warrant trust.<a href="#section-1-5" class="pilcrow">¶</a></p>
 <p id="section-1-6">Transparent claims provide a common basis for holding issuers accountable for the DSCA they release and (more generally) principals accountable for auxiliary claims they make about DSCAs. Hence, issuers may register new claims about their artifacts, but they cannot delete or alter earlier claims, or hide their claims from third parties such as auditors.<a href="#section-1-6" class="pilcrow">¶</a></p>
-<p id="section-1-7">Trust in the TS itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Log, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Log, we require each TS to guarantee the consistency of its own Log (for instance, through the use of a consensus algorithm between replicas of the Log), but assume no consistency between different transparency services.<a href="#section-1-7" class="pilcrow">¶</a></p>
+<p id="section-1-7">Trust in the TS itself is supported both by protecting their implementation (using, for instance, replication, trusted hardware, and remote attestation of systems) and by enabling independent audits of the correctness and consistency of its Registry, thereby holding the organization accountable that operates it. Unlike CT, where independent auditors are responsible for enforcing the consistency of multiple independent instances of the same global Registry, we require each TS to guarantee the consistency of its own Registry (for instance, through the use of a consensus algorithm between replicas of the Registry), but assume no consistency between different transparency services.<a href="#section-1-7" class="pilcrow">¶</a></p>
 <p id="section-1-8">The TS specified in this architecture caters to two types of audiences:<a href="#section-1-8" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-1-9">
 <li id="section-1-9.1">DSCA Issuers: entities, stakeholders, and users involved in supply chain interactions that need to release DSCAs to a definable set of peers; and<a href="#section-1-9.1" class="pilcrow">¶</a>
@@ -1287,10 +1300,10 @@ A TS vouches for specific and well-defined metadata about these DSCAs. Some meta
       </ol>
 <p id="section-1-10">DSCA Issuers rely on being discoverable and represented as the responsible parties for released DSCAs by the TS in a believable manner.
 Analogously, DSCA Consumers rely on verifiable trustworthiness assertions associated with DSCAs and their processing in a believable manner.
-If trust can be put into the operations that record DSCAs in a secure, append-only Log via an online operation, the same trust can be put into a corresponding receipt that is the result of these online operations issued by the TS and that can be validated in offline operations.<a href="#section-1-10" class="pilcrow">¶</a></p>
+If trust can be put into the operations that record DSCAs in a secure, append-only Registry via an online operation, the same trust can be put into a corresponding receipt that is the result of these online operations issued by the TS and that can be validated in offline operations.<a href="#section-1-10" class="pilcrow">¶</a></p>
 <p id="section-1-11">The TS specified in this architecture can be implemented by various different types of services in various types of languages provided via various variants of API layouts.<a href="#section-1-11" class="pilcrow">¶</a></p>
-<p id="section-1-12">The global interoperability enabled and guaranteed by the TS is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in <span>[<a href="#RFC8152" class="xref">RFC8152</a>]</span>, which is used to sign released DSCAs and to build and maintain a Merkle tree that functions as the append-only Log for DSCAs.
-The format and verification process for Log-based transparency receipts are described in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-1-12" class="pilcrow">¶</a></p>
+<p id="section-1-12">The global interoperability enabled and guaranteed by the TS is enabled via core components (architectural constituents) that come with prescriptive requirements (that are typically hidden away from the user audience via APIs). The core components are based on the Concise Signing and Encryption standard specified in <span>[<a href="#RFC8152" class="xref">RFC8152</a>]</span>, which is used to sign released DSCAs and to build and maintain a Merkle tree that functions as the append-only Registry for DSCAs.
+The format and verification process for Registry-based transparency receipts are described in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-1-12" class="pilcrow">¶</a></p>
 <div id="sec-requirements-notation">
 <section id="section-1.1">
         <h3 id="name-requirements-notation">
@@ -1377,28 +1390,28 @@ and their provenance (source code, build reports, audit reports,...) can provide
         <dd class="break"></dd>
 <dt id="section-3-2.11">Feed:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.12">
-          <p id="section-3-2.12.1">An identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Log on a Transparency Service contains a sequence of Claims about the same Artifact.
+          <p id="section-3-2.12.1">An identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Registryon a Transparency Service contains a sequence of Claims about the same Artifact.
  In COSE, Feed is one header attributes in the protected header of the Envelope.<a href="#section-3-2.12.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
-<dt id="section-3-2.13">Log:</dt>
+<dt id="section-3-2.13">Registry:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.14">
-          <p id="section-3-2.14.1">the verifiable data structure that stores Claims in a transparency service. SCITT supports multiple Log formats to accommodate different transparency service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.14.1">the verifiable data structure that stores Claims in a transparency service. SCITT supports multiple Registry formats to accommodate different transparency service implementations, such as historical Merkle Trees and sparse Merkle Trees.<a href="#section-3-2.14.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.15">Transparency Service:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.16">
-          <p id="section-3-2.16.1">the entity that maintains and extends the Log, and endorses its state. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Log. The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.16.1">the entity that maintains and extends the Registry, and endorses its state. A Transparency Service can be a complex distributed system, and SCITT requires the TS to provide many security guarantees about its Registry . The identity of a TS is captured by a public key that must be known by Verifiers in order to validate Receipts.<a href="#section-3-2.16.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.17">Receipt:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.18">
-          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Log. It consists of a Log-specific inclusion proof, a signature by the Transparency Service of the state of the Log, and additional metadata (contained in the countersignature protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.18.1">a Receipt is a special form of COSE countersignature for Claims that embeds cryptographic evidence that the Claim is recorded in the Registry . It consists of a Registry -specific inclusion proof, a signature by the Transparency Service of the state of the Registry , and additional metadata (contained in the countersignature protected headers) to assist in auditing.<a href="#section-3-2.18.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.19">Registration:</dt>
         <dd style="margin-left: 1.5em" id="section-3-2.20">
-          <p id="section-3-2.20.1">the process of submitting a Claim to a Transparency Service, applying its registration policy, storing it in the Log and producing the Receipt returned to the submitter.<a href="#section-3-2.20.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.20.1">the process of submitting a Claim to a Transparency Service, applying its registration policy, storing it in the Registryand producing the Receipt returned to the submitter.<a href="#section-3-2.20.1" class="pilcrow">¶</a></p>
 </dd>
         <dd class="break"></dd>
 <dt id="section-3-2.21">Transparent Claim:</dt>
@@ -1419,12 +1432,12 @@ and their provenance (source code, build reports, audit reports,...) can provide
       <h2 id="name-definition-of-transparency">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-definition-of-transparency" class="section-name selfRef">Definition of Transparency</a>
       </h2>
-<p id="section-4-1">In this document, we use a definition of transparency built over abstract notions of Logs and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Log of a TS. By extension, we may say an Artifact (e.g. a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Log, and will be subject to scrutiny and auditing by other parties.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">Transparency is implemented by a Log that provides a consistent, append-only, publicly available record of entries. Implementations of TS may protect their Log using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the edger. Receipts do not expire, but it is possible to append new entries that subsume older entries.<a href="#section-4-4" class="pilcrow">¶</a></p>
-<p id="section-4-5">Anyone with access to the Log can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Logs of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Log and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Log by the Verifier of the Receipt are generally independent.<a href="#section-4-5" class="pilcrow">¶</a></p>
-<p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Log, as any inconsistency can easily be pinpointed by any auditor with read access to the Log. Some Log formats may also support consistency auditing through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.<a href="#section-4-6" class="pilcrow">¶</a></p>
+<p id="section-4-1">In this document, we use a definition of transparency built over abstract notions of Registry and Receipts. Existing transparency systems such as Certificate Transparency are instances of this definition.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-2">A Claim is an identifiable and non-repudiable Statement made by an Issuer. The Issuer selects additional metadata and attaches a proof of endorsement (in most cases, a signature) using the identity key of the Issuer that binds the Statement and its metadata. Claims can be made transparent by attaching a proof of Registration by a TS, in the form of a Receipt that countersigns the Claim and witnesses its inclusion in the Registryof a TS. By extension, we may say an Artifact (e.g. a firmware binary) is transparent if it comes with one or more Transparent Claims from its author or owner, though the context should make it clear what type of Claim is expected for a given Artifact.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">Transparency does not prevent dishonest or compromised Issuers, but it holds them accountable: any Artifact that may be used to target a particular user that checks for Receipts must have been recorded in the tamper-proof Registry, and will be subject to scrutiny and auditing by other parties.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Transparency is implemented by a Registry that provides a consistent, append-only, cryptographically verifiable, publicly available record of entries. Implementations of TS may protect their Registry using a combination of trusted hardware, replication and consensus protocols, and cryptographic evidence. A Receipt is an offline, universally-verifiable proof that an entry is recorded in the Registry. Receipts do not expire, but it is possible to append new entries that subsume older entries.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-5">Anyone with access to the Registry can independently verify its consistency and review the complete list of Claims registered by each Issuer. However, the Registry of separate Transparency Services are generally disjoint, though it is possible to take a Claim from one Registry and register it again on another (if its policy allows it), so the authorization of the Issuer and of the Registry by the Verifier of the Receipt are generally independent.<a href="#section-4-5" class="pilcrow">¶</a></p>
+<p id="section-4-6">Reputable Issuers are thus incentivized to carefully review their Statements before signing them into Claims. Similarly, reputable TS are incentivized to secure their Registry, as any inconsistency can easily be pinpointed by any auditor with read access to the Registry. Some Registry formats may also support consistency auditing through Receipts, that is, given two valid Receipts the TS may be asked to produce a cryptographic proof that they are consistent. Failure to produce this proof can indicate that the TS operator misbehaved.<a href="#section-4-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-architecture-overview">
@@ -1445,9 +1458,9 @@ and their provenance (source code, build reports, audit reports,...) can provide
                       v        signature  |     |
                     Claim  &lt;--------------/     |
                       |                         |
-                      |  Claim      +--------+  |
-                      |------------&gt;| Trans. |  |
-Transparency -&gt;       +&lt;------------| Log    |  /
+                      |  Claim      +---------+ |
+                      |------------&gt;| Trans.  | |
+Transparency -&gt;       +&lt;------------| Regisrty| /
 Service               |  Receipt    +--------+ X
                       v                       / \
                  Transparent                 /   \
@@ -1457,12 +1470,12 @@ Service               |  Receipt    +--------+ X
                       |  \               /       |
 Verifier    -&gt;        |    Verify Claim          |
                       |                          |
-Auditor    -&gt;       Collect Receipts     Replay Log
+Auditor    -&gt;       Collect Receipts     Replay Registry
 </pre><a href="#section-5-1" class="pilcrow">¶</a>
 </div>
 <p id="section-5-2">The SCITT architecture consists of a very loose federation of Transparency Services, and a set of common formats and protocols for issuing, registering and auditing Claims.
-In order to accomodate as many TS implementations as possible, this document only specifies the format of Claims (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the TS identity and the Log algorithm. Most of the details of the Receipt's contents are specific to the Log algorithm. The <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span> document defines two initial Log algorithms (for historical and sparse Merkle Trees), but other Log formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.<a href="#section-5-2" class="pilcrow">¶</a></p>
-<p id="section-5-3">In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Claim issuance process, transparency Logs and the Claim Registration process, and Verifiers and the Receipt validation process.<a href="#section-5-3" class="pilcrow">¶</a></p>
+In order to accomodate as many TS implementations as possible, this document only specifies the format of Claims (which must be used by all Issuers) and a very thin wrapper format for Receipts, which specifies the TS identity and the Registry algorithm. Most of the details of the Receipt's contents are specific to the Registry algorithm. The <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span> document defines two initial Registry algorithms (for historical and sparse Merkle Trees), but other Registry formats (such as blockchains, or hybrid historical and indexed Merkle Trees) may be proposed later.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-3">In this section, we describe at a high level the three main roles and associated processes in SCITT: Issuers and the Claim issuance process, transparency Registry and the Claim Registration process, and Verifiers and the Receipt validation process.<a href="#section-5-3" class="pilcrow">¶</a></p>
 <div id="sec-claim-issuance">
 <section id="section-5.1">
         <h3 id="name-claim-issuance">
@@ -1493,7 +1506,7 @@ A DID can be <em>resolved</em> into a <em>key manifest</em> (a list of public ke
 <a href="#section-5.1.3" class="section-number selfRef">5.1.3. </a><a href="#name-claim-metadata" class="section-name selfRef">Claim Metadata</a>
           </h4>
 <p id="section-5.1.3-1">Besides Issuer, Feed and kid, the only other mandatory metadata in the Claim is the type of the Payload, indicated in the <code>cty</code> Envelope header.
-However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Log may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditor) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
+However, this set of mandatory metadata is not sufficient to express many important Registration policies. For example, a Registry may only allow a Claim to be registered if it was signed recently. While the Issuer is free to add any information in the payload of the Claim, the TS (and most of its auditor) can only be expected to interpret information in the Envelope.<a href="#section-5.1.3-1" class="pilcrow">¶</a></p>
 <p id="section-5.1.3-2">Such metadata, meant to be interpreted by the TS during Registration policy evaluation, should be added to the <code>reg_info</code> header. While the header <span class="bcp14">MUST</span> be present in all Claims, its contents consist of a map of named attributes. Some attributes (such as the Issuer's timestamp) are standardized with a defined type, to help uniformize their semantics across TS. Others are completely customizable and may have arbitrary types. In any case, all attributes are optional so the map <span class="bcp14">MAY</span> be empty.<a href="#section-5.1.3-2" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1504,9 +1517,9 @@ However, this set of mandatory metadata is not sufficient to express many import
         <h3 id="name-transparency-service-ts">
 <a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-transparency-service-ts" class="section-name selfRef">Transparency Service (TS)</a>
         </h3>
-<p id="section-5.2-1">The role of TS can be decomposed into several major functions. The most important is maintaining a Log, the verifiable data structure that records Claims, and enforcing a Registration policy. It also maintains a service key, which is used to endorse the state of the Log in Receipts. All TS <span class="bcp14">MUST</span> expose standard endpoints for Registration of Claims and Receipt issuance, which is described in <a href="#sec-messages" class="xref">Section 8.1</a>. Each TS also defines its Registration policy, which <span class="bcp14">MUST</span> apply to all entries in the Log.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
-<p id="section-5.2-2">The combination of Log, identity, Registration policy evaluation, and Registration endpoint constitute the trusted part of the TS. Each of these components <span class="bcp14">SHOULD</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the TS. For instance, the code for policy evaluation, Log extension and endorsement may be protected by running in a TEE; the Log may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT <span>[<a href="#PBFT" class="xref">PBFT</a>]</span>) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2-3">Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Claims made by a given Issuer and Feed. Implementations of TS <span class="bcp14">SHOULD</span> avoid using the service identity and extending the Log in auditing endpoints; as much as practical, the Log <span class="bcp14">SHOULD</span> contain enough evidence to re-construct verifiable proofs that the results returned by the auditing endpoint are consistent with a given state of the Log.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-1">The role of TS can be decomposed into several major functions. The most important is maintaining a Registry, the verifiable data structure that records Claims, and enforcing a Registration policy. It also maintains a service key, which is used to endorse the state of the Registry in Receipts. All TS <span class="bcp14">MUST</span> expose standard endpoints for Registration of Claims and Receipt issuance, which is described in <a href="#sec-messages" class="xref">Section 8.1</a>. Each TS also defines its Registration policy, which <span class="bcp14">MUST</span> apply to all entries in the Registry.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">The combination of Registry, identity, Registration policy evaluation, and Registration endpoint constitute the trusted part of the TS. Each of these components <span class="bcp14">SHOULD</span> be carefully protected against both external attacks and internal misbehavior by some or all of the operators of the TS. For instance, the code for policy evaluation, Registry extension and endorsement may be protected by running in a TEE; the Registry may be replicated and a consensus algorithm such as Practical Byzantine Fault Tolerance (pBFT <span>[<a href="#PBFT" class="xref">PBFT</a>]</span>) may be used to protect against malicious or vulnerable replicas; threshold signatures may be use to protect the service key, etc.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">Beyond the trusted components, Transparency Services may operate additional endpoints for auditing, for instance to query for the history of Claims made by a given Issuer and Feed. Implementations of TS <span class="bcp14">SHOULD</span> avoid using the service identity and extending the Registry in auditing endpoints; as much as practical, the Registry <span class="bcp14">SHOULD</span> contain enough evidence to re-construct verifiable proofs that the results returned by the auditing endpoint are consistent with a given state of the Registry.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
 <div id="sec-service-identity-remote-attestation-and-keying">
 <section id="section-5.2.1">
           <h4 id="name-service-identity-remote-att">
@@ -1514,8 +1527,8 @@ However, this set of mandatory metadata is not sufficient to express many import
           </h4>
 <p id="section-5.2.1-1">Every TS <span class="bcp14">MUST</span> have a public service identity,
 associated with public/private key pairs for signing on behalf of the service. In particular, this identity must be known by Verifiers when validating a Receipt<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-2">This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity if they wish to rotate their keys, if the Log algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.1-3">The TS <span class="bcp14">SHOULD</span> provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the TS. This additional evidence <span class="bcp14">SHOULD</span> be recorded in the Log and presented on demand to Verifiers and auditors.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-2">This identity should be stable for the lifetime of the service, so that all Receipts remain valid and consistent. The TS operator <span class="bcp14">MAY</span> use a distributed identifier as their public service identity if they wish to rotate their keys, if the Registry algorithm they use for their Receipt supports it. Other types of cryptographic identities, such as parameters for non-interactive zero-knowledge proof systems, may also be used in the future.<a href="#section-5.2.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.1-3">The TS <span class="bcp14">SHOULD</span> provide evidence that it is securely implemented and operated, enabling remote authentication of the hardware platforms and/or software TCB that run the TS. This additional evidence <span class="bcp14">SHOULD</span> be recorded in the Registry and presented on demand to Verifiers and auditors.<a href="#section-5.2.1-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.1-4">For example, consider a TS implemented using a set of replicas, each running within its own hardware-protected trusted execution environments (TEEs). Each replica <span class="bcp14">SHOULD</span> provide a recent attestation report for its TEE, binding their hardware platform to the software that runs the Transparency Service, the long-term public key of the service, and the key used by the replica for signing Receipts. This attestation evidence <span class="bcp14">SHOULD</span> be supplemented with transparency Receipts for the software and configuration of the service, as measured in its attestation report.<a href="#section-5.2.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1527,17 +1540,17 @@ associated with public/private key pairs for signing on behalf of the service. I
 <ul class="normal ulEmpty">
 <li class="normal ulEmpty" id="section-5.2.2-1.1">
               <p id="section-5.2.2-1.1.1"><strong>Editor's note</strong><a href="#section-5.2.2-1.1.1" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-1.1.2">The initial version of this document assumes Registration policies are set for the lifetime of the Log, and that they apply to all Issuers and Feeds uniformly.
+<p id="section-5.2.2-1.1.2">The initial version of this document assumes Registration policies are set for the lifetime of the Registry, and that they apply to all Issuers and Feeds uniformly.
 There is an ongoing discussion on how to make the design more flexible to allow per-Issuer and per-Feed Registration policies, and whether such policies should be updatable or if a policy change requires a Feed change.
 Please contribute your comments to the SCITT mailing list.<a href="#section-5.2.2-1.1.2" class="pilcrow">¶</a></p>
 </li>
           </ul>
-<p id="section-5.2.2-2">Each TS is initially configured with a set of Registration policies, which will be applied for the lifetime of the Log.
-A Registration policy represents a predicate that takes as input the current Log and the Envelope of a new Claim to register (including the <code>reg_info</code> header which contains customizable additional attributes), and returns a Boolean decision on whether the Claim should be included on the Log or not. A TS <span class="bcp14">MUST</span> ensure that all its Registration policies return a positive decision before adding a Claim to the Log.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-3">While Registration policies are a burden for Issuers (some may require them to maintain state to remember what they have signed before) they support stronger transparency guarantees, and they greatly help Verifiers and auditors in making sense of the information on the Log. (This is particularly relevant for parties that verify Receipts on their own, without accessing the Log.) For instance, if a TS doesn't apply any policy, Claims may be registered in a different order than they have been issued, and old Claims may be replayed, which makes it difficult to understand the logical history of an Artifact, or to prevent rollback attacks.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-2">Each TS is initially configured with a set of Registration policies, which will be applied for the lifetime of the Registry.
+A Registration policy represents a predicate that takes as input the current Registry and the Envelope of a new Claim to register (including the <code>reg_info</code> header which contains customizable additional attributes), and returns a Boolean decision on whether the Claim should be included in the Registry or not. A TS <span class="bcp14">MUST</span> ensure that all its Registration policies return a positive decision before adding a Claim to the Registry.<a href="#section-5.2.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-3">While Registration policies are a burden for Issuers (some may require them to maintain state to remember what they have signed before) they support stronger transparency guarantees, and they greatly help Verifiers and auditors in making sense of the information on the Registry. (This is particularly relevant for parties that verify Receipts on their own, without accessing the Registry). For instance, if a TS doesn't apply any policy, Claims may be registered in a different order than they have been issued, and old Claims may be replayed, which makes it difficult to understand the logical history of an Artifact, or to prevent rollback attacks.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-4">There are two kinds of Registration policies: (1) named policies have standardized semantics that are uniform across all implementations of SCITT Transparency Services, while (2) custom policies are opaque and may contain pointers to (or even inlined) policy descriptions (declarative or programmable).<a href="#section-5.2.2-4" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-5">Transparency services <span class="bcp14">MUST</span> advertise the Registration policies enforced by their service, including the list of <code>reg_info</code> attributes they require, both to minimize the risk of rejecting Claims presented by Issuers, and to advertise the properties implied by Receipt verification. Implementations of Receipt Verifiers <span class="bcp14">SHOULD</span> persist the list of Registration policies associated with a service identity, and return the list of Registration policies as an output of Receipt validation. Auditors <span class="bcp14">MUST</span> re-apply the Registration policy of every entry in the Log to ensure that the Log applied them correctly.<a href="#section-5.2.2-5" class="pilcrow">¶</a></p>
-<p id="section-5.2.2-6">Custom policies may use additional information present in the Log outside of Claims. For instance, Issuers may have to register on the TS before Claims can be accepted; a custom policy may be used to enforce access control to the Transparency Service. Verifying the signature of the Issuer is also a form of Registration policy, but it is globally enforced in order to separate authentication and authorization, with policy only considering authentic inputs.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-5">Transparency services <span class="bcp14">MUST</span> advertise the Registration policies enforced by their service, including the list of <code>reg_info</code> attributes they require, both to minimize the risk of rejecting Claims presented by Issuers, and to advertise the properties implied by Receipt verification. Implementations of Receipt Verifiers <span class="bcp14">SHOULD</span> persist the list of Registration policies associated with a service identity, and return the list of Registration policies as an output of Receipt validation. Auditors <span class="bcp14">MUST</span> re-apply the Registration policy of every entry in the Registry to ensure that the Registry applied them correctly.<a href="#section-5.2.2-5" class="pilcrow">¶</a></p>
+<p id="section-5.2.2-6">Custom policies may use additional information present in the Registry outside of Claims. For instance, Issuers may have to register on the TS before Claims can be accepted; a custom policy may be used to enforce access control to the Transparency Service. Verifying the signature of the Issuer is also a form of Registration policy, but it is globally enforced in order to separate authentication and authorization, with policy only considering authentic inputs.<a href="#section-5.2.2-6" class="pilcrow">¶</a></p>
 <p id="section-5.2.2-7"><a href="#tbl-initial-named-policies" class="xref">Table 1</a> defines an initial set of named policies that TS may decide to enforce. This may be evolved in future drafts.<a href="#section-5.2.2-7" class="pilcrow">¶</a></p>
 <span id="name-an-initial-set-of-named-pol"></span><div id="tbl-initial-named-policies">
 <table class="center" id="table-1">
@@ -1558,46 +1571,46 @@ A Registration policy represents a predicate that takes as input the current Log
                 <td class="text-left" rowspan="1" colspan="1">
                   <code>register_by: uint</code>
 </td>
-                <td class="text-left" rowspan="1" colspan="1">Returns true if now () &lt; register_by. The Log <span class="bcp14">MUST</span> store the Log time at Registration along with the Claim, and <span class="bcp14">SHOULD</span> indicate it in Receipts</td>
+                <td class="text-left" rowspan="1" colspan="1">Returns true if now () &lt; register_by. The Registry <span class="bcp14">MUST</span> store the Registry time at Registration along with the Claim, and <span class="bcp14">SHOULD</span> indicate it in Receipts</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">Sequential</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <code>sequence_no: uint</code>
 </td>
-                <td class="text-left" rowspan="1" colspan="1">First, lookup in the Log for Claims with the same Issuer and Feed. If at least one is found, returns true if and only if the <code>sequence_no</code> of the new Claim is the highest <code>sequence_no</code> in the existing Claims incremented by one. Otherwise, returns true if and only if <code>sequence_no = 0</code>.</td>
+                <td class="text-left" rowspan="1" colspan="1">First, lookup in the Registry for Claims with the same Issuer and Feed. If at least one is found, returns true if and only if the <code>sequence_no</code> of the new Claim is the highest <code>sequence_no</code> in the existing Claims incremented by one. Otherwise, returns true if and only if <code>sequence_no = 0</code>.</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">Temporal</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <code>issuance_ts: uint</code>
 </td>
-                <td class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no Claim in the Log with the same Issuer and Feed with a greater <code>issuance_ts</code>
+                <td class="text-left" rowspan="1" colspan="1">Returns true if and only if there is no Claim in the Registry with the same Issuer and Feed with a greater <code>issuance_ts</code>
 </td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">NoReplay</td>
                 <td class="text-left" rowspan="1" colspan="1">None</td>
-                <td class="text-left" rowspan="1" colspan="1">Returns true if and only if the Claim doesn't already appear in the Log</td>
+                <td class="text-left" rowspan="1" colspan="1">Returns true if and only if the Claim doesn't already appear in the Registry</td>
               </tr>
             </tbody>
           </table>
 </div>
 </section>
 </div>
-<div id="sec-log-security-requirements">
+<div id="sec-registry-security-requirements">
 <section id="section-5.2.3">
-          <h4 id="name-log-security-requirements">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-log-security-requirements" class="section-name selfRef">Log Security Requirements</a>
+          <h4 id="name-registry-security-requireme">
+<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-registry-security-requireme" class="section-name selfRef">Registry Security Requirements</a>
           </h4>
-<p id="section-5.2.3-1">There are many different candidate verifiable data structures that may be used to implement the Log, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Log to support concise Receipts (i.e. whose size grows at most logarithmically in the number of entries in the Log). This does not necessarily rule out blockchains as a Log, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-5.2.3-2">Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Log format in this document. Instead, we propose two initial formats for Logs in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span> using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Log.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-1">There are many different candidate verifiable data structures that may be used to implement the Registry, such as chronological Merkle Trees, sparse/indexed Merkle Trees, full blockchains, and many other variants. We only require the Registry to support concise Receipts (i.e. whose size grows at most logarithmically in the number of entries in the Registry). This does not necessarily rule out blockchains as a Registry, but may necessitate advanced Receipt schemes that use arguments of knowledge and other verifiable computing techniques.<a href="#section-5.2.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3-2">Since the details of how to verify a Receipt are specific to the data structure, we do not specify any particular Registry format in this document. Instead, we propose two initial formats for Registry in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span> using historical and sparse Merkle Trees. Beyond the format of Receipts, we require generic properties that should be satisfied by the components in the TS that have the ability to write to the Registry.<a href="#section-5.2.3-2" class="pilcrow">¶</a></p>
 <div id="sec-finality">
 <section id="section-5.2.3.1">
             <h5 id="name-finality">
 <a href="#section-5.2.3.1" class="section-number selfRef">5.2.3.1. </a><a href="#name-finality" class="section-name selfRef">Finality</a>
             </h5>
-<p id="section-5.2.3.1-1">The Log is append-only: once a Claim is registered, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Claim, the Claim and any preceding entry in the Log become immutable, and the Receipt provides universally-verifiable evidence of this property.<a href="#section-5.2.3.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.1-1">The Registry is append-only: once a Claim is registered, it cannot be modified, deleted, or moved. In particular, once a Receipt is returned for a given Claim, the Claim and any preceding entry in the Registry become immutable, and the Receipt provides universally-verifiable evidence of this property.<a href="#section-5.2.3.1-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-consistency">
@@ -1605,8 +1618,8 @@ A Registration policy represents a predicate that takes as input the current Log
             <h5 id="name-consistency">
 <a href="#section-5.2.3.2" class="section-number selfRef">5.2.3.2. </a><a href="#name-consistency" class="section-name selfRef">Consistency</a>
             </h5>
-<p id="section-5.2.3.2-1">There is no fork in the Log: everyone with access to its contents sees the same sequence of entries, and can check its consistency with any Receipts they have collected.
-TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to verify that the state of the Log encoded in an old Receipt is consistent with the current Log state.<a href="#section-5.2.3.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.2-1">There is no fork in the Registry: everyone with access to its contents sees the same sequence of entries, and can check its consistency with any Receipts they have collected.
+TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to verify that the state of the Registry encoded in an old Receipt is consistent with the current Registry state.<a href="#section-5.2.3.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-replayability-and-auditing">
@@ -1614,11 +1627,11 @@ TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to veri
             <h5 id="name-replayability-and-auditing">
 <a href="#section-5.2.3.3" class="section-number selfRef">5.2.3.3. </a><a href="#name-replayability-and-auditing" class="section-name selfRef">Replayability and Auditing</a>
             </h5>
-<p id="section-5.2.3.3-1">Everyone with access to the Log can check the correctness of its contents. In particular,<a href="#section-5.2.3.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.3-1">Everyone with access to the Registry can check the correctness of its contents. In particular,<a href="#section-5.2.3.3-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5.2.3.3-2.1">the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Log at the time of registraton, and must then yield the same result.<a href="#section-5.2.3.3-2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-5.2.3.3-2.1">the TS defines and enforces deterministic Registration policies that can be re-evaluated based solely on the contents of the Registry at the time of registraton, and must then yield the same result.<a href="#section-5.2.3.3-2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-5.2.3.3-2.2">The ordering of entries, their cryptographic contents, and the Log governance may be non-deterministic, but they must be verifiable.<a href="#section-5.2.3.3-2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-5.2.3.3-2.2">The ordering of entries, their cryptographic contents, and the Registry governance may be non-deterministic, but they must be verifiable.<a href="#section-5.2.3.3-2.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.2.3.3-2.3">The TS <span class="bcp14">SHOULD</span> store evidence about the resolution of distributed identifiers into manifests.<a href="#section-5.2.3.3-2.3" class="pilcrow">¶</a>
 </li>
@@ -1632,12 +1645,12 @@ TS implementations <span class="bcp14">SHOULD</span> provide a mechanism to veri
             <h5 id="name-governance-and-bootstrappin">
 <a href="#section-5.2.3.4" class="section-number selfRef">5.2.3.4. </a><a href="#name-governance-and-bootstrappin" class="section-name selfRef">Governance and Bootstrapping</a>
             </h5>
-<p id="section-5.2.3.4-1">The TS needs to support governance, with well-defined procedures for allocating resources to operate the Log (e.g., for provisioning trusted hardware and registering their attestation materials in the Log) and for updating its code (e.g., relying on Transparent Claims about code updates, secured on the Log itself, or on some auxiliary TS).<a href="#section-5.2.3.4-1" class="pilcrow">¶</a></p>
+<p id="section-5.2.3.4-1">The TS needs to support governance, with well-defined procedures for allocating resources to operate the Registry (e.g., for provisioning trusted hardware and registering their attestation materials in the Registry) and for updating its code (e.g., relying on Transparent Claims about code updates, secured on the Registry itself, or on some auxiliary TS).<a href="#section-5.2.3.4-1" class="pilcrow">¶</a></p>
 <p id="section-5.2.3.4-2">Governance procedures, their auditing, and their transparency are implementation specific. The TS <span class="bcp14">SHOULD</span> document them.<a href="#section-5.2.3.4-2" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-5.2.3.4-3.1">Governance may be based on a consortium of members that are jointly responsible for the TS, or automated based on the contents of an auxiliary governance TS.<a href="#section-5.2.3.4-3.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-5.2.3.4-3.2">Governance typically involves additional records in the Log to enable its auditing. Hence, the Log may contain both Transparent Claims and governance entries.<a href="#section-5.2.3.4-3.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-5.2.3.4-3.2">Governance typically involves additional records in the Registry to enable its auditing. Hence, the Registry may contain both Transparent Claims and governance entries.<a href="#section-5.2.3.4-3.2" class="pilcrow">¶</a>
 </li>
               <li class="normal" id="section-5.2.3.4-3.3">Issuers, Verifiers, and third-party auditors may review the TS governance before trusting the service, or on a regular basis.<a href="#section-5.2.3.4-3.3" class="pilcrow">¶</a>
 </li>
@@ -1774,15 +1787,15 @@ Unprotected_Header = {
 </li>
           <li id="section-6.3-2.4">Envelope validation. The service <span class="bcp14">MUST</span> check that the Envelope has a payload and the protected headers listed above. The service <span class="bcp14">MAY</span> additionally verify the payload format and content.<a href="#section-6.3-2.4" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.3-2.5">Apply Registration policy: for named policies, the TS should check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1. A TS <span class="bcp14">MUST</span> reject Claims that contain an attribute used for a named policy that is not enforced by the service. Custom Claims are evaluated given the current Log state and the entire Envelope, and <span class="bcp14">MAY</span> use information contained in the attributes of named policies.<a href="#section-6.3-2.5" class="pilcrow">¶</a>
+          <li id="section-6.3-2.5">Apply Registration policy: for named policies, the TS should check that the required Registration info attributes are present in the Envelope and apply the check described in Table 1. A TS <span class="bcp14">MUST</span> reject Claims that contain an attribute used for a named policy that is not enforced by the service. Custom Claims are evaluated given the current Registry state and the entire Envelope, and <span class="bcp14">MAY</span> use information contained in the attributes of named policies.<a href="#section-6.3-2.5" class="pilcrow">¶</a>
 </li>
-          <li id="section-6.3-2.6">Commit the new Claim to the Log<a href="#section-6.3-2.6" class="pilcrow">¶</a>
+          <li id="section-6.3-2.6">Commit the new Claim to the Registry<a href="#section-6.3-2.6" class="pilcrow">¶</a>
 </li>
           <li id="section-6.3-2.7">Sign and return the Receipt.<a href="#section-6.3-2.7" class="pilcrow">¶</a>
 </li>
         </ol>
-<p id="section-6.3-3">The last two steps <span class="bcp14">MAY</span> be shared between a batch of Claims recorded in the Log.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
-<p id="section-6.3-4">The service <span class="bcp14">MUST</span> ensure that the Claim is committed before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry in the Log. Conversely, the service <span class="bcp14">MAY</span> re-issue Receipts for the Log content, for instance after a transient fault during Claim Registration.<a href="#section-6.3-4" class="pilcrow">¶</a></p>
+<p id="section-6.3-3">The last two steps <span class="bcp14">MAY</span> be shared between a batch of Claims recorded in the Registry.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+<p id="section-6.3-4">The service <span class="bcp14">MUST</span> ensure that the Claim is committed before releasing its Receipt, so that it can always back up the Receipt by releasing the corresponding entry in the Registry. Conversely, the service <span class="bcp14">MAY</span> re-issue Receipts for the Registry content, for instance after a transient fault during Claim Registration.<a href="#section-6.3-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-validation-of-transparent-claims">
@@ -1790,7 +1803,7 @@ Unprotected_Header = {
         <h3 id="name-validation-of-transparent-c">
 <a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-validation-of-transparent-c" class="section-name selfRef">Validation of Transparent Claims</a>
         </h3>
-<p id="section-6.4-1">This section provides additional implementation considerations, the high-level validation algorithm is described in <a href="#validation" class="xref">Section 5.3</a>, with the Log-specific details of checking Receipts are covered in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<p id="section-6.4-1">This section provides additional implementation considerations, the high-level validation algorithm is described in <a href="#validation" class="xref">Section 5.3</a>, with the Registry-specific details of checking Receipts are covered in <span>[<a href="#I-D.birkholz-scitt-receipts" class="xref">I-D.birkholz-scitt-receipts</a>]</span>.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 <p id="section-6.4-2">Before checking a Claim, the Verifier must be configured with one or more identities of trusted Transparency Services. If more than one service is configured, the Verifier <span class="bcp14">MUST</span> return which service the Claim is registered on.<a href="#section-6.4-2" class="pilcrow">¶</a></p>
 <p id="section-6.4-3">In some scenarios, the Verifier already expects a specific Issuer and Feed for the Claim, while in other cases they are not known in advance and can be an output of validation. Verifiers <span class="bcp14">SHOULD</span> offer a configuration to decide if the Issuer's signature should be locally verified (which may require a DID resolution, and may fail if the manifest is not available or if the key is revoked), or if it should trust the validation done by the TS during Registration.<a href="#section-6.4-3" class="pilcrow">¶</a></p>
 <p id="section-6.4-4">Some Verifiers <span class="bcp14">MAY</span> decide to locally re-apply some or all of the Registration policies if they have limited trust in the TS. In addition, Verifiers <span class="bcp14">MAY</span> apply arbitrary validation policies after the signature and Receipt have been checked. Such policies may use as input all information in the Envelope, the Receipt, and the payload, as well as any local state.<a href="#section-6.4-4" class="pilcrow">¶</a></p>
@@ -1808,14 +1821,14 @@ Unprotected_Header = {
 <p id="section-7-2">Multiple SCITT instances, governed and operated by different organizations.<a href="#section-7-2" class="pilcrow">¶</a></p>
 <p id="section-7-3">For example,
 - a small, simple SCITT instance may keep track specifically of the software used for operating SCITT services.
-- an air-gapped data center may operate its own SCITT Log to retain full control and auditing of its software supplies.<a href="#section-7-3" class="pilcrow">¶</a></p>
+- an air-gapped data center may operate its own SCITT Registry to retain full control and auditing of its software supplies.<a href="#section-7-3" class="pilcrow">¶</a></p>
 <p id="section-7-4">How?
-- Policy-based. Within an organization, local Verifiers contact an authoritative SCITT that records the latest policies associated with classes of Artifacts; these policies indicate which Issuers and Logs are trusted for verifying signed Transparent Claims for these Artifacts.<a href="#section-7-4" class="pilcrow">¶</a></p>
+- Policy-based. Within an organization, local Verifiers contact an authoritative SCITT that records the latest policies associated with classes of Artifacts; these policies indicate which Issuers and Registeries are trusted for verifying signed Transparent Claims for these Artifacts.<a href="#section-7-4" class="pilcrow">¶</a></p>
 <ul class="normal">
 <li class="normal" id="section-7-5.1">Other federation mechanisms?<a href="#section-7-5.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-7-6">We'd like to attach multiple Receipts to the same signed Claims, each Receipt endorsing the Issuer signature and a subset of prior Receipts. This involves down-stream Logs verifying and recording these Receipts before issuing their own Receipts.<a href="#section-7-6" class="pilcrow">¶</a></p>
+<p id="section-7-6">We'd like to attach multiple Receipts to the same signed Claims, each Receipt endorsing the Issuer signature and a subset of prior Receipts. This involves down-stream Registeries verifying and recording these Receipts before issuing their own Receipts.<a href="#section-7-6" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="sec-transparency-service-api">
@@ -1953,7 +1966,7 @@ GET &lt;Base URL&gt;/entries/&lt;Transaction ID&gt;/receipt
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
 <p id="section-10-1">On its own, verifying a Transparent Claim does not guarantee that its Envelope or contents are trustworthy---just that they have been signed by the apparent Issuer and counter-signed by the
-TS. If the Verifier trusts the Issuer, it can infer that the Claim was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose. If the Verifier trusts the TS, it can independently infer that the Claim passed the TS Registration policy and that has been persisted in the Log. Unless advertised in the TS Registration policy, the Verifier should not assume that the ordering of Transparent Claims in the Log matches the ordering of their issuance.<a href="#section-10-1" class="pilcrow">¶</a></p>
+TS. If the Verifier trusts the Issuer, it can infer that the Claim was issued with this Envelope and contents, which may be interpreted as the Issuer saying the Artifact is fit for its intended purpose. If the Verifier trusts the TS, it can independently infer that the Claim passed the TS Registration policy and that has been persisted in the Registry. Unless advertised in the TS Registration policy, the Verifier should not assume that the ordering of Transparent Claims in the Registry matches the ordering of their issuance.<a href="#section-10-1" class="pilcrow">¶</a></p>
 <p id="section-10-2">Similarly, the fact that an Issuer can be held accountable for its Transparent Claims does not on its own provide any mitigation or remediation mechanism in case one of these Claims turned out to be misleading or malicious---just that signed evidence will be available to support them.<a href="#section-10-2" class="pilcrow">¶</a></p>
 <p id="section-10-3">Issuers <span class="bcp14">SHOULD</span> ensure that the Statements in their Claims are correct and unambiguous, for example by avoiding ill-defined or ambiguous formats that may cause Verifiers to interpret the Claim as valid for some other purpose.<a href="#section-10-3" class="pilcrow">¶</a></p>
 <p id="section-10-4">Issuers and Transparency Services <span class="bcp14">SHOULD</span> carefully protect their private signing keys
