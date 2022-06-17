@@ -388,7 +388,7 @@ Table of Contents
    the Issuer that binds the Statement and its metadata.  Claims can be
    made transparent by attaching a proof of Registration by a TS, in the
    form of a Receipt that countersigns the Claim and witnesses its
-   inclusion in the Registryof a TS.  By extension, we may say an
+   inclusion in the Registry of a TS.  By extension, we may say an
    Artifact (e.g. a firmware binary) is transparent if it comes with one
    or more Transparent Claims from its author or owner, though the
    context should make it clear what type of Claim is expected for a
