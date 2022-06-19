@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-16T00:37:48.756049+00:00",
+  "timestamp": "2022-06-19T00:39:51.333433+00:00",
   "repo": "ietf-scitt/draft-birkholz-scitt-architecture",
   "labels": [
     {
@@ -888,15 +888,15 @@
       "authorAssociation": "CONTRIBUTOR",
       "assignees": [],
       "labels": [],
-      "body": "Use correct terminology(Transparency Log) reflecting the Transparency Architecture as against an implementation terminology of ledger.",
+      "body": "Use correct terminology(Transparency Registry) reflecting the Transparency Architecture as against an implementation terminology of ledger.",
       "createdAt": "2022-04-08T12:25:09Z",
-      "updatedAt": "2022-04-13T08:53:52Z",
+      "updatedAt": "2022-06-17T12:14:49Z",
       "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
       "headRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
       "headRefName": "architecture-edits",
-      "headRefOid": "1b8717b8e36df940cd9e64a88c0603cdbe31fa91",
+      "headRefOid": "bfccf561780ed9d5a93bc619e6209975273a3e47",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
