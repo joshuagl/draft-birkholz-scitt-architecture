@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-28T00:40:07.299389+00:00",
+  "timestamp": "2022-06-30T00:36:52.681786+00:00",
   "repo": "ietf-scitt/draft-birkholz-scitt-architecture",
   "labels": [
     {
@@ -911,6 +911,99 @@
         }
       ],
       "reviews": []
+    },
+    {
+      "number": 14,
+      "id": "PR_kwDOG2uWFs46gK8X",
+      "title": "ascii art to SVG in HTML mode",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/14",
+      "state": "OPEN",
+      "author": "thomas-fossati",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Needs [aasvg](https://github.com/martinthomson/aasvg#usage)",
+      "createdAt": "2022-06-28T14:44:51Z",
+      "updatedAt": "2022-06-28T20:59:56Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
+      "headRepository": "thomas-fossati/draft-birkholz-scitt-architecture",
+      "headRefName": "main",
+      "headRefOid": "91b5a93aa6a58165031d4762ab233beb3423a97a",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 15,
+      "id": "PR_kwDOG2uWFs46hSRN",
+      "title": "Move away from transparency and towards verifiability as a property",
+      "url": "https://github.com/ietf-scitt/draft-birkholz-scitt-architecture/pull/15",
+      "state": "OPEN",
+      "author": "chris-wood",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "As discussed someone indirectly on the list, it might make sense to accommodate different types of transparency services, in particular those that don't require running and operating a publicly-verifiable ledger. To that end, this change moves away from _transparency_ as a requirement for SCITT and focuses on _verifiability_, allowing for SCITT instances to implement verifiability _with_ transparency (as in CT) if desired, but also allowing for simpler deployments (like those based on a timestamping service) where applicable.",
+      "createdAt": "2022-06-28T19:40:55Z",
+      "updatedAt": "2022-06-29T19:43:27Z",
+      "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
+      "baseRefName": "main",
+      "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
+      "headRepository": "chris-wood/draft-birkholz-scitt-architecture",
+      "headRefName": "caw/transparency-to-verifiability",
+      "headRefOid": "494a7f849794c33703bc8ee54110531458313964",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs49B2I6",
+          "commit": {
+            "abbreviatedOid": "494a7f8"
+          },
+          "author": "thomas-fossati",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-06-29T19:36:13Z",
+          "updatedAt": "2022-06-29T19:36:13Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "```suggestion\r\n  I-D.birkholz-scitt-receipts: RECEIPTS\r\n```",
+              "createdAt": "2022-06-29T19:36:13Z",
+              "updatedAt": "2022-06-29T19:36:13Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs49B37Z",
+          "commit": {
+            "abbreviatedOid": "494a7f8"
+          },
+          "author": "henkbirkholz",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "",
+          "createdAt": "2022-06-29T19:43:17Z",
+          "updatedAt": "2022-06-29T19:43:27Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "oh",
+              "createdAt": "2022-06-29T19:43:18Z",
+              "updatedAt": "2022-06-29T19:43:27Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
