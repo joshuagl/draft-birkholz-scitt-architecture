@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2022-06-30T00:36:52.681786+00:00",
+  "timestamp": "2022-07-03T00:40:17.536202+00:00",
   "repo": "ietf-scitt/draft-birkholz-scitt-architecture",
   "labels": [
     {
@@ -890,7 +890,7 @@
       "labels": [],
       "body": "Use correct terminology(Transparency Registry) reflecting the Transparency Architecture as against an implementation terminology of ledger.",
       "createdAt": "2022-04-08T12:25:09Z",
-      "updatedAt": "2022-06-17T12:14:49Z",
+      "updatedAt": "2022-07-01T16:16:29Z",
       "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
@@ -910,7 +910,52 @@
           "updatedAt": "2022-04-13T08:53:51Z"
         }
       ],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "PRR_kwDOG2uWFs49Lb_k",
+          "commit": {
+            "abbreviatedOid": "bfccf56"
+          },
+          "author": "joshuagl",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "Ledger does seem prescriptive, and could be read as implying specific implementation technologies. Registries is more generic (though Cloud folks might disagree).",
+          "createdAt": "2022-07-01T16:09:14Z",
+          "updatedAt": "2022-07-01T16:16:29Z",
+          "comments": [
+            {
+              "originalPosition": 70,
+              "body": "missing space\r\n```suggestion\r\n: An identifier chosen by the Issuer for the Artifact. For every Issuer and Feed, the Registry on a Transparency Service contains a sequence of Claims about the same Artifact.\r\n```",
+              "createdAt": "2022-07-01T16:09:14Z",
+              "updatedAt": "2022-07-01T16:16:29Z"
+            },
+            {
+              "originalPosition": 92,
+              "body": "missing space here, too\r\n```suggestion\r\n: the process of submitting a Claim to a Transparency Service, applying its registration policy, storing it in the Registry and producing the Receipt returned to the submitter.\r\n```",
+              "createdAt": "2022-07-01T16:09:52Z",
+              "updatedAt": "2022-07-01T16:16:29Z"
+            },
+            {
+              "originalPosition": 129,
+              "body": "typo: Regisrty -> Registry\r\n```suggestion\r\nTransparency ->       +<------------| Registry| /\r\n```",
+              "createdAt": "2022-07-01T16:10:39Z",
+              "updatedAt": "2022-07-01T16:16:29Z"
+            },
+            {
+              "originalPosition": 307,
+              "body": "typo: Registeries -> Registries\r\n```suggestion\r\n- Policy-based. Within an organization, local Verifiers contact an authoritative SCITT that records the latest policies associated with classes of Artifacts; these policies indicate which Issuers and Registries are trusted for verifying signed Transparent Claims for these Artifacts.\r\n```\r\nRegistries ",
+              "createdAt": "2022-07-01T16:12:17Z",
+              "updatedAt": "2022-07-01T16:16:29Z"
+            },
+            {
+              "originalPosition": 312,
+              "body": "typo: Registeries -> Registries\r\n```suggestion\r\nWe'd like to attach multiple Receipts to the same signed Claims, each Receipt endorsing the Issuer signature and a subset of prior Receipts. This involves down-stream Registries verifying and recording these Receipts before issuing their own Receipts.\r\n```",
+              "createdAt": "2022-07-01T16:12:36Z",
+              "updatedAt": "2022-07-01T16:16:29Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 14,
@@ -950,7 +995,7 @@
       "labels": [],
       "body": "As discussed someone indirectly on the list, it might make sense to accommodate different types of transparency services, in particular those that don't require running and operating a publicly-verifiable ledger. To that end, this change moves away from _transparency_ as a requirement for SCITT and focuses on _verifiability_, allowing for SCITT instances to implement verifiability _with_ transparency (as in CT) if desired, but also allowing for simpler deployments (like those based on a timestamping service) where applicable.",
       "createdAt": "2022-06-28T19:40:55Z",
-      "updatedAt": "2022-06-29T19:43:27Z",
+      "updatedAt": "2022-07-01T16:17:25Z",
       "baseRepository": "ietf-scitt/draft-birkholz-scitt-architecture",
       "baseRefName": "main",
       "baseRefOid": "202c61040810b6a58af7b0c1df7c663a97ccdc6d",
@@ -1000,6 +1045,26 @@
               "body": "oh",
               "createdAt": "2022-06-29T19:43:18Z",
               "updatedAt": "2022-06-29T19:43:27Z"
+            }
+          ]
+        },
+        {
+          "id": "PRR_kwDOG2uWFs49Ld5Q",
+          "commit": {
+            "abbreviatedOid": "494a7f8"
+          },
+          "author": "joshuagl",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2022-07-01T16:17:25Z",
+          "updatedAt": "2022-07-01T16:17:25Z",
+          "comments": [
+            {
+              "originalPosition": 5,
+              "body": "This seems like an unintended typo?",
+              "createdAt": "2022-07-01T16:17:25Z",
+              "updatedAt": "2022-07-01T16:17:25Z"
             }
           ]
         }
